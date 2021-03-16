@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VillagerHurtbox : MonoBehaviour
+public class DummyHurtbox : MonoBehaviour
 {
     public int maxHealth = 100;
     int currentHealth;
@@ -21,12 +21,13 @@ public class VillagerHurtbox : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealt(currentHealth, maxHealth);
-        VillagerControl villager = GetComponentInParent<VillagerControl>();
 
-        villager.GetHurt();
         if (currentHealth <= 0)
         {
-            villager.Die();
+            GetComponent<Collider2D>().enabled = false;
+            this.enabled = false;
+            GetComponentInChildren<HealthBar>().slider.gameObject.SetActive(false);
+            Destroy(this.gameObject);
         }
     }
 }

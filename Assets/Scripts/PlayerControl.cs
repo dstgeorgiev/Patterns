@@ -37,6 +37,7 @@ public class PlayerControl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        rb.freezeRotation = true;
     }
 
     void Update()
@@ -141,11 +142,15 @@ public class PlayerControl : MonoBehaviour
             {
                 enemy.GetComponent<EnemyHurtbox>().TakeHit(attackDmg);
             }
-            else if(enemy.GetComponent<VillagerHurtbox>()!=null)
+            if(enemy.GetComponent<VillagerHurtbox>()!=null)
             {
                 enemy.GetComponent<VillagerHurtbox>().TakeHit(attackDmg);
             }
-            
+            if (enemy.GetComponent<DummyHurtbox>() != null)
+            {
+                enemy.GetComponent<DummyHurtbox>().TakeHit(attackDmg);
+            }
+
 
             Debug.Log("we hit:" + enemy.name);
         }
