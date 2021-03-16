@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyDetection : MonoBehaviour
 {
     private EnemyControl controller;
@@ -34,6 +35,7 @@ public class EnemyDetection : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        StartCoroutine(wait());
         RotateAndAttack(other);
     }
 
@@ -44,7 +46,7 @@ public class EnemyDetection : MonoBehaviour
             PlayerControl player = FindObjectOfType<PlayerControl>();
             if (player != null)
             {
-                
+
                 Vector2 relative = transform.position - other.transform.position;
                 Direction collisionDirection;
 
@@ -69,13 +71,14 @@ public class EnemyDetection : MonoBehaviour
                         controller.direction = 1;
                     }
                 }
-                
+
                 if (Time.time >= nextAtckTime)
                 {
                     controller.Attack();
+                   
                     nextAtckTime = Time.time + 1f / controller.attackRate;
                 }
-                    
+
                 entered = true;
             }
         }
@@ -83,5 +86,11 @@ public class EnemyDetection : MonoBehaviour
         {
             controller.StopAttack();
         }
+    }
+    IEnumerator wait()
+    {
+        //put how many seconds you want it to wait in WaitForSeconds(here)
+        yield return new WaitForSeconds(1);
+
     }
 }

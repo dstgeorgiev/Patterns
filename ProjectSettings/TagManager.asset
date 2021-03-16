@@ -19,10 +19,10 @@ TagManager:
   - Enemy
   - Villager
   - Player
-  - EHitbox
+  - VHurtbox1
   - EHurtbox
   - PHurtbox
-  - 
+  - VHurtbox2
   - 
   - 
   - 
