@@ -10,6 +10,7 @@ public class HealthBar : MonoBehaviour
     public Color highHelath;
     public Vector3 offset;
 
+
     // Update is called once per frame
     void Update()
     {
@@ -18,7 +19,7 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealt(float health, float  maxHealth)
     {
-        Debug.Log(this.name + "'s current health: "+health);
+        Debug.Log("Healthbar's value: "+health);
         slider.gameObject.SetActive(health < maxHealth);
         slider.value = health;
         slider.maxValue = maxHealth;
