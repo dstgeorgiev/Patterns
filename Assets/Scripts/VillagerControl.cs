@@ -37,4 +37,22 @@ public class VillagerControl : MonoBehaviour
         rb.velocity = new Vector2(xVelocity, rb.velocity.y);
         animator.SetFloat("Speed", Mathf.Round(Mathf.Abs(direction)));
     }
+
+    //the villager dies
+    public void Die()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+        GetComponentInChildren<HealthBar>().slider.gameObject.SetActive(false);
+        GetComponentInChildren<VillagerHurtbox>().enabled = false;
+
+
+        Debug.Log("Goblin died!");
+    }
+
+    //plays hurt annimation
+    public void GetHurt()
+    {
+        
+    }
 }

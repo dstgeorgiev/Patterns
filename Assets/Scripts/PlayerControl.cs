@@ -137,7 +137,16 @@ public class PlayerControl : MonoBehaviour
         //damage enemies
         foreach(Collider2D enemy in enemiesHit)
         {
-            enemy.GetComponent<EnemyHurtbox>().TakeHit(attackDmg);
+            if(enemy.GetComponent<EnemyHurtbox>()!=null)
+            {
+                enemy.GetComponent<EnemyHurtbox>().TakeHit(attackDmg);
+            }
+            else if(enemy.GetComponent<VillagerHurtbox>()!=null)
+            {
+                enemy.GetComponent<VillagerHurtbox>().TakeHit(attackDmg);
+            }
+            
+
             Debug.Log("we hit:" + enemy.name);
         }
 
