@@ -7533,6 +7533,11 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1520704178}
+    - target: {fileID: 2016684549190005208, guid: 08b5532921337fa4d9bacf33e833c97b,
+        type: 3}
+      propertyPath: maxHealth
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 2016684549463488232, guid: 08b5532921337fa4d9bacf33e833c97b,
         type: 3}
       propertyPath: m_RootOrder
@@ -7690,6 +7695,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8601333980386937456, guid: e7561692f31b7f14798988cf4a6121c3,
+        type: 3}
+      propertyPath: attackDmg
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8601333980386937461, guid: e7561692f31b7f14798988cf4a6121c3,
         type: 3}

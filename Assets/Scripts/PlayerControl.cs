@@ -172,5 +172,6 @@ public class PlayerControl : MonoBehaviour
 
         Debug.Log("Player died!");
     }
+
 }
 

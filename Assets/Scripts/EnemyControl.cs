@@ -17,7 +17,7 @@ public class EnemyControl : MonoBehaviour
     public Transform attackPoint2;
     public LayerMask characterLayers;
 
-    public int attackDmg = 20;
+    public int attackDmg = 15;
     public float attackRate = 2f;
     
 
@@ -83,6 +83,11 @@ public class EnemyControl : MonoBehaviour
     public void GetHurt()
     {
         animator.SetTrigger("Hurt");
+    }
+
+    public Animator GetAnimator()
+    {
+        return animator;
     }
 
 }

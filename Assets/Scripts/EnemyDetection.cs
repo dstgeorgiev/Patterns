@@ -41,7 +41,8 @@ public class EnemyDetection : MonoBehaviour
 
     private void RotateAndAttack(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")&& Time.time >= nextAtckTime&&
+            !isAnimPlaying("Hurt"))
         {
             PlayerControl player = FindObjectOfType<PlayerControl>();
             if (player != null)
@@ -72,12 +73,12 @@ public class EnemyDetection : MonoBehaviour
                     }
                 }
 
-                if (Time.time >= nextAtckTime)
-                {
-                    controller.Attack();
+                
+                
+                 controller.Attack();
                    
-                    nextAtckTime = Time.time + 1f / controller.attackRate;
-                }
+                 nextAtckTime = Time.time + 1f / controller.attackRate;
+         
 
                 entered = true;
             }
@@ -92,5 +93,19 @@ public class EnemyDetection : MonoBehaviour
         //put how many seconds you want it to wait in WaitForSeconds(here)
         yield return new WaitForSeconds(1);
 
+    }
+
+    bool isAnimPlaying(string stateName)
+    {
+        Animator animator = controller.GetAnimator();
+        if(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex(stateName)).IsName(stateName)&&
+            animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex(stateName)).normalizedTime<1.0f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

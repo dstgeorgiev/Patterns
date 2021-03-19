@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHurtbox : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth = 200;
     int currentHealth;
     public PlayerHealthBar healthBar;
 
@@ -18,7 +18,9 @@ public class PlayerHurtbox : MonoBehaviour
     //this method is called 
     public void TakeHit(int damage)
     {
-        currentHealth -= damage;
+        Debug.Log("current player health before attack: " + currentHealth);
+        currentHealth = currentHealth - damage;
+        Debug.Log("current player health after attack: " + currentHealth);
         healthBar.SetHealt(currentHealth);
         PlayerControl player = GetComponentInParent<PlayerControl>();
 
