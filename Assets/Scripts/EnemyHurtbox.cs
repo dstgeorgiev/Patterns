@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHurtbox : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth = 80;
     int currentHealth;
     public HealthBar healthBar;
 

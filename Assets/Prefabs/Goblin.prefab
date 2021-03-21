@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ac4fb1a9eef534cb7bbef7c90ff376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 80
   healthBar: {fileID: 8601333980572630124}
 --- !u!61 &8601333980199889128
 BoxCollider2D:
@@ -652,7 +652,7 @@ MonoBehaviour:
   characterLayers:
     serializedVersion: 2
     m_Bits: 16384
-  attackDmg: 20
+  attackDmg: 15
   attackRate: 2
 --- !u!1 &8601333980572630126
 GameObject:
