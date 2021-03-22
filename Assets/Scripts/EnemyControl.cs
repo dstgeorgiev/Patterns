@@ -27,6 +27,7 @@ public class EnemyControl : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         timer = changeTime;
         animator = GetComponent<Animator>();
+        rb.freezeRotation = true;
     }
 
     // Update is called once per frame
