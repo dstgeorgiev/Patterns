@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3264905771218444125}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3264905771479892896}
   - component: {fileID: 3264905771479892897}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 3264905772198998227}
   - component: {fileID: 3264905772198998224}
   - component: {fileID: 3264905772198998223}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spike Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
