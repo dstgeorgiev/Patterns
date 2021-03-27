@@ -35,7 +35,6 @@ public class EnemyDetection : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        StartCoroutine(wait());
         RotateAndAttack(other);
     }
 
