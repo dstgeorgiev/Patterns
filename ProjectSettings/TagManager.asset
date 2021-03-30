@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Villager
+  - Coin
+  - KillPlayerInstantly
   layers:
   - Default
   - TransparentFX

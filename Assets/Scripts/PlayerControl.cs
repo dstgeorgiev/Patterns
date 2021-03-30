@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 //using UnityEngine.Experimental.Rendering.LWRP;
 //using UnityEngine.Experimental.Rendering.Universal;
 
@@ -24,13 +25,29 @@ public class PlayerControl : MonoBehaviour
     float horizontalValue;
     bool faceRight = true;
 
+    //for the attack range
     public Transform attackPoint1;
     public Transform attackPoint2;
     public LayerMask enemyLayers;
 
+    //for the attack 
     public int attackDmg = 25;
     public float attackRate = 2f;
     float nextAtckTime = 0f;
+
+    //for the footstep sounds
+    private const int FOOTSTEP_DELAY = 12;
+    private int soundDelay = FOOTSTEP_DELAY;
+
+    //for the coins counter
+    private int coins;
+    public TextMeshProUGUI textCoinCounter;
+
+    //for the fairy contract
+    private bool isEnchanted = false;
+
+    //for when dead
+    public GameObject gameOverMenu;
 
 
     void Awake()
@@ -121,8 +138,19 @@ public class PlayerControl : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 1);
             faceRight = true;
+            Debug.Log("player is walking");
         }
         animator.SetFloat("Player Speed", Mathf.Abs(dir*speed));
+        if (animator.GetFloat("Player Speed") > 0.1&&!animator.GetBool("Jumping"))
+        {
+            if (--soundDelay < 0)
+            {
+                soundDelay = FOOTSTEP_DELAY;
+                var sounds = this.gameObject.GetComponent<PickRandomSound>();
+                AudioSource.PlayClipAtPoint(sounds.GetRandom(), this.gameObject.transform.position, 1.0f);
+            }
+        }
+
         #endregion
     }
 
@@ -166,11 +194,41 @@ public class PlayerControl : MonoBehaviour
     //the enemy dies
     public void Die()
     {
+        
         animator.SetBool("Dead", true);
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
-
+        Time.timeScale = 0f;
+        gameOverMenu.SetActive(true);
         Debug.Log("Player died!");
+    }
+
+    //when touching a coin - the coin gets destroyed
+    //when touching a kill collider - the player dies
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            IncrementCoins();
+            var sounds = other.gameObject.GetComponent<PickRandomSound>();
+            AudioSource.PlayClipAtPoint(sounds.GetRandom(), other.gameObject.transform.position, 1.0f);
+            Destroy(other.gameObject);
+        }
+        if(other.gameObject.CompareTag("KillPlayerInstantly"))
+        {
+            this.Die();
+        }
+    }
+
+    public void IncrementCoins()
+    {
+        coins++;
+        textCoinCounter.text = coins.ToString();
+        Debug.Log(coins);
+        //coinsThisLevel++;
+       // PlayerPrefs.SetInt("coins", coins);
+       // if (coinCountUI != null)
+        //    coinCountUI.text = coins.ToString();
     }
 
 }
