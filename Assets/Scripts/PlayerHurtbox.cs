@@ -15,7 +15,7 @@ public class PlayerHurtbox : MonoBehaviour
         healthBar.SetMaxHelth(maxHealth);
     }
 
-    //this method is called 
+    // player gets hurt by the amount of dmg passed to the method
     public void TakeHit(int damage)
     {
         Debug.Log("current player health before attack: " + currentHealth);
@@ -30,5 +30,21 @@ public class PlayerHurtbox : MonoBehaviour
         {
             player.Die();
         }
+    }
+
+    //the player gets healed by the amount of health the potion gives
+    public void Heal(int heal)
+    {
+        if(currentHealth+heal>maxHealth)
+        {
+            currentHealth = maxHealth;
+            healthBar.SetHealt(currentHealth);
+        }
+        else
+        {
+            currentHealth = currentHealth + heal;
+            healthBar.SetHealt(currentHealth);
+        }
+        
     }
 }

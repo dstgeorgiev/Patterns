@@ -43,6 +43,11 @@ public class PlayerControl : MonoBehaviour
     private int coins;
     public TextMeshProUGUI textCoinCounter;
 
+    //for the potion counter
+    private int potions;
+    public TextMeshProUGUI textPotionsCounter;
+    public int potionHealsBy = 50;
+
     //for the fairy contract
     private bool isEnchanted = false;
 
@@ -60,7 +65,12 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         horizontalValue = Input.GetAxisRaw("Horizontal");
-        
+
+        //when p is pressed, the player drinks 1 health potion
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            DrinkPotion();
+        }
         //when w is pressed, jump is enabled
         if(Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -231,5 +241,51 @@ public class PlayerControl : MonoBehaviour
         //    coinCountUI.text = coins.ToString();
     }
 
+    //sets enchantment
+    public void SetEnchanted(bool isEnchanted)
+    {
+        this.isEnchanted = isEnchanted;
+    }
+
+    //tells us if the player is enchanted
+    public bool IsPlayerEnchanted()
+    {
+        return this.isEnchanted;
+    }
+
+    //sets the amount of coins the player has
+    public void SetCoins(int coins)
+    {
+        this.coins = coins;
+        textCoinCounter.text = coins.ToString();
+    }
+
+    //returns the amount of coins the player has
+    public int GetCoins()
+    {
+        return this.coins;
+    }
+
+    //sets the amount of potions the player has
+    public void SetPotions(int potions)
+    {
+        this.potions = potions;
+    }
+
+    //returns the amount of potions the player has
+    public int GetPotions()
+    {
+        return this.potions;
+    }
+
+    private void DrinkPotion()
+    {
+        if(potions>0)
+        {
+            this.GetComponentInChildren<PlayerHurtbox>().Heal(potionHealsBy);
+            potions = potions - 1;
+            textPotionsCounter.text = potions.ToString();
+        }
+    }
 }
 
