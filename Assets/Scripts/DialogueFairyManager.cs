@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueFairyManager : MonoBehaviour
 {
     public TextMeshProUGUI nameTxt;
     public TextMeshProUGUI dialogueTxt;
     public GameObject whoSpeaks;
-    
+    public GameObject decisionButtons;
+    public GameObject continueButton;
+    public GameObject enchantedButton;
+    public GameObject healthPotionCounter;
+
 
     private Queue<string> sentences;
 
@@ -18,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("DFM started");
         sentences = new Queue<string>();
     }
     public void StartDialogue(Dialogue dialogue)
@@ -32,15 +37,15 @@ public class DialogueManager : MonoBehaviour
             }
             ShowNextSentence();
         }
-        
+         
     }
 
     public void ShowNextSentence()
     {
-        if(sentences.Count==0)
+        if (sentences.Count == 0)
         {
             //the dialogue ended
-            EndDialogue();
+            MakeADecision();
             return;
         }
 
@@ -49,8 +54,8 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
-    
-    IEnumerator TypeSentence (string sentence)
+
+    IEnumerator TypeSentence(string sentence)
     {
         dialogueTxt.text = "";
         foreach (char character in sentence.ToCharArray())
@@ -60,10 +65,43 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
         Time.timeScale = 1f;
         whoSpeaks.SetActive(false);
         wasStarted = true;
+    }
+
+    private void MakeADecision()
+    {
+        decisionButtons.SetActive(true);
+        continueButton.SetActive(false);
+    }
+
+    public void EnchantPlayer()
+    {
+        FindObjectOfType<PlayerControl>().SetEnchanted(true);
+    }
+
+    public void RemoveEnchantmentPlayer()
+    {
+        FindObjectOfType<PlayerControl>().SetEnchanted(false);
+    }
+
+    public void SetEnchantedButtonActive()
+    {
+        enchantedButton.SetActive(true);
+        FindObjectOfType<FairyMenu>().PublicStart();
+    }
+
+    public void MakeHealthPotionCOunterVisible()
+    {
+        healthPotionCounter.SetActive(true);
+    }
+
+    public void ChargePlayerForEnchantment()
+    {
+        FindObjectOfType<PlayerControl>().SetCoins(FindObjectOfType<PlayerControl>().GetCoins() - 1);
+
     }
 }

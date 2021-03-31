@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/level2.unity
     guid: 25a023ace29e9bc41a6a949f5ae36391
   - enabled: 1
+    path: Assets/Scenes/level3_night.unity
+    guid: 76529d333bd30c64095ce0f82c86c521
+  - enabled: 1
     path: Assets/Scenes/level10_FOREST.unity
     guid: 3a04ce8f979779a4881542e04a81c0e6
   m_configObjects: {}

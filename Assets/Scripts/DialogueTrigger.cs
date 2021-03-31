@@ -6,12 +6,15 @@ public class DialogueTrigger : MonoBehaviour
 {
     public GameObject whoSpeaks;
     public Dialogue dialogue;
+
+    private bool wasTriggered = false;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")&&!wasTriggered)
         {
             TriggerDialogue();
+            wasTriggered = true;
         }
     }
 
@@ -19,7 +22,15 @@ public class DialogueTrigger : MonoBehaviour
     {
         whoSpeaks.SetActive(true);
         Time.timeScale = 0f;
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        if(FindObjectOfType<DialogueManager>()!=null)
+        {
+            FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        }
+        else if (FindObjectOfType<DialogueFairyManager>() != null)
+        {
+            FindObjectOfType<DialogueFairyManager>().StartDialogue(dialogue);
+        }
+        
     }
 
     // Start is called before the first frame update

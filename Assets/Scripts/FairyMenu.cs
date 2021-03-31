@@ -22,26 +22,38 @@ public class FairyMenu : MonoBehaviour
 
     private void Start()
     {
-        player.SetEnchanted(true);
-        player.SetCoins(30);
+        Debug.Log("Fairy menu Started");
+       // player.SetEnchanted(true);
+        //player.SetCoins(30);
         isPlayerEnchanted = player.IsPlayerEnchanted();
         playerCoins = player.GetCoins();
         numberOfPotionsPlayerHas = int.Parse(numberOfPotionsPlayerHasText.text);
-        
+        Debug.Log("Number of potions player has: " + numberOfPotionsPlayerHas);
+        EditPrice();
+    }
+
+    public void PublicStart()
+    {
+        isPlayerEnchanted = player.IsPlayerEnchanted();
+        playerCoins = player.GetCoins();
+        numberOfPotionsPlayerHas = int.Parse(numberOfPotionsPlayerHasText.text);
+
         EditPrice();
     }
 
     public void BuyPotions()
     {
+        playerCoins = player.GetCoins();
         //buys potion if player has enough money
-        if(playerCoins-potionPrice>=0)
+        if (playerCoins-potionPrice>=0)
         {
             numberOfPotionsPlayerHas = int.Parse(numberOfPotionsPlayerHasText.text);
             numberOfPotionsPlayerHas++;
-            player.SetPotions(numberOfPotionsPlayerHas);
-            numberOfPotionsPlayerHasText.text = numberOfPotionsPlayerHas.ToString();
+            
             playerCoins = playerCoins - potionPrice;
             player.SetCoins(playerCoins);
+            player.SetPotions(numberOfPotionsPlayerHas);
+            numberOfPotionsPlayerHasText.text = numberOfPotionsPlayerHas.ToString();
         }
         else
         {

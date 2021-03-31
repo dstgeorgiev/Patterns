@@ -41,10 +41,12 @@ public class PlayerControl : MonoBehaviour
 
     //for the coins counter
     private int coins;
+    private int coinsThisLevel;
     public TextMeshProUGUI textCoinCounter;
 
     //for the potion counter
     private int potions;
+    private int potionsThisLevel;
     public TextMeshProUGUI textPotionsCounter;
     public int potionHealsBy = 50;
 
@@ -54,11 +56,39 @@ public class PlayerControl : MonoBehaviour
     //for when dead
     public GameObject gameOverMenu;
 
-
+    private void Start()
+    {
+        Debug.Log("Player Started");
+        coins = PlayerPrefs.GetInt("coins", 0);
+        coinsThisLevel = coins;
+        Debug.Log("Coins start level set to: " + coinsThisLevel);
+        potions = PlayerPrefs.GetInt("potions", 0);
+        potionsThisLevel = potions;
+        Debug.Log("Potions start level set to: " + potions);
+        if (PlayerPrefs.GetInt("isEnchanted", 0) == 1)
+        {
+            isEnchanted = true;
+        }
+        else
+        {
+            isEnchanted = false;
+        }
+        if (textCoinCounter != null)
+        {
+            Debug.Log("PlayerStart has set coins to: " + coins);
+            textCoinCounter.text = coins.ToString();
+        }
+        if (textPotionsCounter != null)
+        {
+            Debug.Log("PlayerStart has set potions to: " + potions);
+            textPotionsCounter.text = potions.ToString();
+        }
+    }
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        
         rb.freezeRotation = true;
     }
 
@@ -210,6 +240,7 @@ public class PlayerControl : MonoBehaviour
         this.enabled = false;
         Time.timeScale = 0f;
         gameOverMenu.SetActive(true);
+        RevoceChanegables();
         Debug.Log("Player died!");
     }
 
@@ -228,23 +259,50 @@ public class PlayerControl : MonoBehaviour
         {
             this.Die();
         }
+        if(other.gameObject.CompareTag("EndLevelCollider"))
+        {
+            coinsThisLevel = coins;
+            potionsThisLevel = potions;
+            PlayerPrefs.SetInt("coins", coinsThisLevel);
+            PlayerPrefs.SetInt("potions", potionsThisLevel);
+            Debug.Log("End level collider set the potions to: " + potionsThisLevel);
+        }
+    }
+
+    private void RevoceChanegables()
+    {
+        coins = coinsThisLevel;
+        potions = potionsThisLevel;
+        PlayerPrefs.SetInt("coins", coins);
+        Debug.Log("coins set after death: " + coins);
+        PlayerPrefs.SetInt("potions", potions);
+        Debug.Log("potions set after death: " + potions);
     }
 
     public void IncrementCoins()
     {
         coins++;
-        textCoinCounter.text = coins.ToString();
-        Debug.Log(coins);
-        //coinsThisLevel++;
-       // PlayerPrefs.SetInt("coins", coins);
-       // if (coinCountUI != null)
-        //    coinCountUI.text = coins.ToString();
+        PlayerPrefs.SetInt("coins", coins);
+         if (textCoinCounter != null)
+        {
+            textCoinCounter.text = coins.ToString();
+        }
+        
     }
 
     //sets enchantment
     public void SetEnchanted(bool isEnchanted)
     {
         this.isEnchanted = isEnchanted;
+        if(isEnchanted)
+        {
+            PlayerPrefs.SetInt("isEnchanted", 1);
+        }
+        else 
+        {
+            PlayerPrefs.SetInt("isEnchanted", 0);
+        }
+        
     }
 
     //tells us if the player is enchanted
@@ -257,6 +315,7 @@ public class PlayerControl : MonoBehaviour
     public void SetCoins(int coins)
     {
         this.coins = coins;
+        PlayerPrefs.SetInt("coins", coins);
         textCoinCounter.text = coins.ToString();
     }
 
@@ -269,7 +328,12 @@ public class PlayerControl : MonoBehaviour
     //sets the amount of potions the player has
     public void SetPotions(int potions)
     {
+        Debug.Log("SetPotions set the potions to: " + potions);
         this.potions = potions;
+        Debug.Log("PlayerSetPotions has set potions to: " + potions);
+        textPotionsCounter.text = potions.ToString();
+        Debug.Log("Potions set to: " + potions);
+        PlayerPrefs.SetInt("potions", potions);
     }
 
     //returns the amount of potions the player has
@@ -284,8 +348,19 @@ public class PlayerControl : MonoBehaviour
         {
             this.GetComponentInChildren<PlayerHurtbox>().Heal(potionHealsBy);
             potions = potions - 1;
+            Debug.Log("PlayerDrinkPotions has set potions to: " + potions);
             textPotionsCounter.text = potions.ToString();
+            PlayerPrefs.SetInt("potions", potions);
         }
+    }
+
+    public void SetPotionsLevel(int potionsLevel)
+    {
+        potionsThisLevel = potionsLevel;
+        Debug.Log("SetPotionsLevel set the potions per level to: " + potionsThisLevel);
+        potions = potionsThisLevel;
+        PlayerPrefs.SetInt("potions", potions);
+        Debug.Log("SetPotionsLevel set the potions: " + potions);
     }
 }
 
