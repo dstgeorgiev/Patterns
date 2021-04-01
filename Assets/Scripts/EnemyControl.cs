@@ -77,7 +77,7 @@ public class EnemyControl : MonoBehaviour
         GetComponentInChildren<HealthBar>().slider.gameObject.SetActive(false);
         GetComponentInChildren<EnemyHurtbox>().enabled = false;
         FindObjectOfType<EnforceKillEnemy>().GoblinKilled();
-
+        FindObjectOfType<AudioManager>().StopPlay("enemy_attack");
         Debug.Log("Goblin died!");
     }
 

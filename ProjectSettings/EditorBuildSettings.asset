@@ -21,6 +21,24 @@ EditorBuildSettings:
     path: Assets/Scenes/level3_night.unity
     guid: 76529d333bd30c64095ce0f82c86c521
   - enabled: 1
+    path: Assets/Scenes/level4_day.unity
+    guid: 4f29dece950e8034bb27917dc4b89116
+  - enabled: 1
+    path: Assets/Scenes/level5_city_Entr.unity
+    guid: 4950326428864a24c8d1be01dafb3648
+  - enabled: 1
+    path: Assets/Scenes/level6_CITY_Day.unity
+    guid: 3ab62c198921ead448dec9515982b9a4
+  - enabled: 1
+    path: Assets/Scenes/level7_City_Night.unity
+    guid: d61de8fdcfe4b884cb7f3642208f1dd0
+  - enabled: 1
+    path: Assets/Scenes/level8_CASTLE_ENTRANCE.unity
+    guid: e07aa9fa0a203f7459ed17de8495802a
+  - enabled: 1
+    path: Assets/Scenes/level9_CASTLE.unity
+    guid: 69ba6d42e994647488b81f0f8bc8d320
+  - enabled: 1
     path: Assets/Scenes/level10_FOREST.unity
     guid: 3a04ce8f979779a4881542e04a81c0e6
   m_configObjects: {}

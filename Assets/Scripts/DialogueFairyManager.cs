@@ -13,6 +13,9 @@ public class DialogueFairyManager : MonoBehaviour
     public GameObject enchantedButton;
     public GameObject healthPotionCounter;
 
+    public bool isFairyOfferingToKillGoblins = false;
+    private int sentencesPassed = 0;
+
 
     private Queue<string> sentences;
 
@@ -35,9 +38,44 @@ public class DialogueFairyManager : MonoBehaviour
             {
                 sentences.Enqueue(sentence);
             }
-            ShowNextSentence();
+            if(!isFairyOfferingToKillGoblins)
+            {
+                ShowNextSentence();
+            }
+            else
+            {
+                SpecialShowNextSentence();
+
+            }
+            
         }
          
+    }
+
+    public void SpecialShowNextSentence()
+    {
+        sentencesPassed++;
+        if (sentences.Count == 0)
+        {
+            //the dialogue ended
+            MakeADecision();
+            return;
+        }
+        string sentence = sentences.Dequeue();
+        if(sentencesPassed==3)
+        {
+            string coinsPlayerHas = (FindObjectOfType<PlayerControl>().GetCoins() - 1).ToString();
+            sentence = coinsPlayerHas +" "+ sentence;
+            dialogueTxt.text = sentence;
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
+            return;
+        }
+
+        
+        dialogueTxt.text = sentence;
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
     }
 
     public void ShowNextSentence()
@@ -103,5 +141,16 @@ public class DialogueFairyManager : MonoBehaviour
     {
         FindObjectOfType<PlayerControl>().SetCoins(FindObjectOfType<PlayerControl>().GetCoins() - 1);
 
+    }
+
+    public void ChargePlayerForEnchantmentKill()
+    {
+        FindObjectOfType<PlayerControl>().SetCoins(1);
+
+    }
+
+    public void KillEnemy()
+    {
+        FindObjectOfType<EnemyControl>().Die();
     }
 }
