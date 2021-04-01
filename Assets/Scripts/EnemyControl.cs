@@ -50,6 +50,7 @@ public class EnemyControl : MonoBehaviour
     public void Attack()
     {
         animator.SetTrigger("Attacking");
+        FindObjectOfType<AudioManager>().Play("enemy_attack");
 
         //detect enemies
         Collider2D[] charactersHit = Physics2D.OverlapAreaAll(attackPoint1.position, attackPoint2.position, characterLayers);

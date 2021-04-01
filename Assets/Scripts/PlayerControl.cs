@@ -58,6 +58,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Start()
     {
+        FindObjectOfType<AudioManager>().StopPlay("game_over");
         Debug.Log("Player Started");
         coins = PlayerPrefs.GetInt("coins", 0);
         coinsThisLevel = coins;
@@ -156,6 +157,7 @@ public class PlayerControl : MonoBehaviour
             //isGrounded = false;
             jumpCheck = false;
             rb.AddForce(new Vector2(0f, jumpPower));
+            FindObjectOfType<AudioManager>().Play("player_jump");
         }
 
         #region Move
@@ -199,6 +201,7 @@ public class PlayerControl : MonoBehaviour
     {
         //attack animation
         animator.SetTrigger("Attack2");
+        FindObjectOfType<AudioManager>().Play("player_attack");
 
         //detect enemies
         Collider2D[] enemiesHit = Physics2D.OverlapAreaAll(attackPoint1.position, attackPoint2.position, enemyLayers);
@@ -209,14 +212,17 @@ public class PlayerControl : MonoBehaviour
             if(enemy.GetComponent<EnemyHurtbox>()!=null)
             {
                 enemy.GetComponent<EnemyHurtbox>().TakeHit(attackDmg);
+                FindObjectOfType<AudioManager>().Play("enemy_hurt");
             }
             if(enemy.GetComponent<VillagerHurtbox>()!=null)
             {
                 enemy.GetComponent<VillagerHurtbox>().TakeHit(attackDmg);
+                FindObjectOfType<AudioManager>().Play("enemy_hurt");
             }
             if (enemy.GetComponent<DummyHurtbox>() != null)
             {
                 enemy.GetComponent<DummyHurtbox>().TakeHit(attackDmg);
+                FindObjectOfType<AudioManager>().Play("enemy_hurt");
             }
 
 
@@ -229,6 +235,7 @@ public class PlayerControl : MonoBehaviour
     public void GetHurt()
     {
         animator.SetTrigger("Hurt");
+        FindObjectOfType<AudioManager>().Play("player_hurt");
     }
 
     //the enemy dies
@@ -242,6 +249,7 @@ public class PlayerControl : MonoBehaviour
         gameOverMenu.SetActive(true);
         RevoceChanegables();
         Debug.Log("Player died!");
+        FindObjectOfType<AudioManager>().Play("game_over");
     }
 
     //when touching a coin - the coin gets destroyed
