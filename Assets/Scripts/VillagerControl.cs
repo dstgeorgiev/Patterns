@@ -45,9 +45,8 @@ public class VillagerControl : MonoBehaviour
         this.enabled = false;
         GetComponentInChildren<HealthBar>().slider.gameObject.SetActive(false);
         GetComponentInChildren<VillagerHurtbox>().enabled = false;
-
-
-        Debug.Log("Goblin died!");
+        FindObjectOfType<PlayerControl>().SetVillagerKilled();
+        Debug.Log("Villager died!");
     }
 
     //plays hurt annimation

@@ -56,6 +56,10 @@ public class PlayerControl : MonoBehaviour
     //for when dead
     public GameObject gameOverMenu;
 
+    //for the killed villagers
+    private int killedVillagers;
+    private int killedVillagersThisLevel;
+
     private void Start()
     {
         FindObjectOfType<AudioManager>().StopPlay("game_over");
@@ -66,6 +70,8 @@ public class PlayerControl : MonoBehaviour
         potions = PlayerPrefs.GetInt("potions", 0);
         potionsThisLevel = potions;
         Debug.Log("Potions start level set to: " + potions);
+        killedVillagers = PlayerPrefs.GetInt("villagers", 0);
+        killedVillagersThisLevel = killedVillagers;
         if (PlayerPrefs.GetInt("isEnchanted", 0) == 1)
         {
             isEnchanted = true;
@@ -271,8 +277,10 @@ public class PlayerControl : MonoBehaviour
         {
             coinsThisLevel = coins;
             potionsThisLevel = potions;
+            killedVillagersThisLevel = killedVillagers;
             PlayerPrefs.SetInt("coins", coinsThisLevel);
             PlayerPrefs.SetInt("potions", potionsThisLevel);
+            PlayerPrefs.SetInt("villagers", killedVillagersThisLevel);
             Debug.Log("End level collider set the potions to: " + potionsThisLevel);
         }
     }
@@ -281,10 +289,12 @@ public class PlayerControl : MonoBehaviour
     {
         coins = coinsThisLevel;
         potions = potionsThisLevel;
+        killedVillagers = killedVillagersThisLevel;
         PlayerPrefs.SetInt("coins", coins);
         Debug.Log("coins set after death: " + coins);
         PlayerPrefs.SetInt("potions", potions);
         Debug.Log("potions set after death: " + potions);
+        PlayerPrefs.SetInt("villagers", killedVillagers);
     }
 
     public void IncrementCoins()
@@ -369,6 +379,20 @@ public class PlayerControl : MonoBehaviour
         potions = potionsThisLevel;
         PlayerPrefs.SetInt("potions", potions);
         Debug.Log("SetPotionsLevel set the potions: " + potions);
+    }
+
+    //increases the amount of killed villagers by 1
+    public void SetVillagerKilled()
+    {
+        killedVillagers++;
+        PlayerPrefs.SetInt("villagers", killedVillagers);
+        Debug.Log("Villagers killed so far: " + killedVillagers);
+    }
+
+    //returns the total amount of killed villagers
+    public int GetVillagersKilled()
+    {
+        return this.killedVillagers;
     }
 }
 
