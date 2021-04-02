@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogueFairyManager : MonoBehaviour
 {
@@ -220,5 +221,11 @@ public class DialogueFairyManager : MonoBehaviour
     public void SetPickMenuActive()
     {
         enchantedButton.SetActive(true);
+    }
+
+    public void EndGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("StartScene");
     }
 }
