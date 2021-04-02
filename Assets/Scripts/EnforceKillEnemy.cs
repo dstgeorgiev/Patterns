@@ -23,6 +23,7 @@ public class EnforceKillEnemy : MonoBehaviour
 
     public void checkAllGoblinsKilled()
     {
+        Debug.Log("Goblins killed so far: " + deadGoblins);
         if(deadGoblins>=goblinsToKill)
         {
             Destroy(wall);

@@ -60,9 +60,21 @@ public class PlayerControl : MonoBehaviour
     private int killedVillagers;
     private int killedVillagersThisLevel;
 
+    //for the sound
+    private int isGameOverSoundPlaying;
+
+    //for the level remember
+    private int indexLevel;
+
     private void Start()
     {
-        FindObjectOfType<AudioManager>().StopPlay("game_over");
+        isGameOverSoundPlaying = PlayerPrefs.GetInt("game_over", 0);
+        if(isGameOverSoundPlaying==1)
+        {
+            FindObjectOfType<AudioManager>().StopPlay("game_over");
+            isGameOverSoundPlaying = 0;
+            PlayerPrefs.SetInt("game_over", 0);
+        }        
         Debug.Log("Player Started");
         coins = PlayerPrefs.GetInt("coins", 0);
         coinsThisLevel = coins;
@@ -254,6 +266,7 @@ public class PlayerControl : MonoBehaviour
         Time.timeScale = 0f;
         gameOverMenu.SetActive(true);
         RevoceChanegables();
+        PlayerPrefs.SetInt("game_over", 1);
         Debug.Log("Player died!");
         FindObjectOfType<AudioManager>().Play("game_over");
     }
@@ -393,6 +406,20 @@ public class PlayerControl : MonoBehaviour
     public int GetVillagersKilled()
     {
         return this.killedVillagers;
+    }
+
+    //for the indexLevel
+    public void SetIndexLevel(int index)
+    {
+        indexLevel = index;
+        PlayerPrefs.SetInt("level", indexLevel);
+    }
+
+    //to return the index of the level
+    public int GetIndexLevel()
+    {
+        indexLevel = PlayerPrefs.GetInt("level");
+        return indexLevel;
     }
 }
 

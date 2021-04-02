@@ -14,6 +14,7 @@ public class DialogueFairyManager : MonoBehaviour
     public GameObject healthPotionCounter;
 
     public bool isFairyOfferingToKillGoblins = false;
+    public bool isCastleLevel = false;
     private int sentencesPassed = 0;
 
 
@@ -44,7 +45,15 @@ public class DialogueFairyManager : MonoBehaviour
             }
             else
             {
-                SpecialShowNextSentence();
+                if(!isCastleLevel)
+                {
+                    SpecialShowNextSentence();
+                }
+                else
+                {
+                    SpecialTwoShowNextSentence();
+                }
+                
 
             }
             
@@ -73,6 +82,41 @@ public class DialogueFairyManager : MonoBehaviour
         }
 
         
+        dialogueTxt.text = sentence;
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
+    }
+
+    public void SpecialTwoShowNextSentence()
+    {
+        sentencesPassed++;
+        if (sentences.Count == 0)
+        {
+            //the dialogue ended
+            MakeADecision();
+            return;
+        }
+        string sentence = sentences.Dequeue();
+        if (sentencesPassed == 3)
+        {
+            string coinsPlayerHas;
+            if (FindObjectOfType<PlayerControl>().IsPlayerEnchanted())
+            {
+                coinsPlayerHas = (FindObjectOfType<PlayerControl>().GetCoins() + 2).ToString();
+            }
+            else
+            {
+                coinsPlayerHas = 1.ToString();
+            }
+            
+            sentence = coinsPlayerHas + " " + sentence;
+            dialogueTxt.text = sentence;
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
+            return;
+        }
+
+
         dialogueTxt.text = sentence;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
@@ -152,5 +196,29 @@ public class DialogueFairyManager : MonoBehaviour
     public void KillEnemy()
     {
         FindObjectOfType<EnemyControl>().Die();
+    }
+
+    public void ChargeAndKill()
+    {
+        
+        if (!FindObjectOfType<PlayerControl>().IsPlayerEnchanted())
+        {
+            int coins = FindObjectOfType<PlayerControl>().GetCoins();
+            if(coins>=1)
+            {
+                foreach(EnemyControl goblin in FindObjectsOfType<EnemyControl>())
+                {
+                    goblin.Die();
+                }
+                FindObjectOfType<PlayerControl>().SetCoins(FindObjectOfType<PlayerControl>().GetCoins() - 1);
+                
+            }
+        }
+        
+    }
+
+    public void SetPickMenuActive()
+    {
+        enchantedButton.SetActive(true);
     }
 }

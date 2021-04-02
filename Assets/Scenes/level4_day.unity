@@ -46966,6 +46966,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2104214995 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2016684549463488234, guid: 08b5532921337fa4d9bacf33e833c97b,
+    type: 3}
+  m_PrefabInstance: {fileID: 180606322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6431bd7ea2c30f049a7505aa19369afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2119251865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47461,7 +47473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fairyMenuUi: {fileID: 6363747516268050897}
   enchantedButtonUi: {fileID: 6363747516681706175}
-  player: {fileID: 0}
+  player: {fileID: 2104214995}
   potionPriceText: {fileID: 6363747516692511088}
   numberOfPotionsPlayerHasText: {fileID: 5533595707150005512}
 --- !u!1 &5533595706706568757

@@ -45,6 +45,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
+        //Debug.Log(sentence);
         dialogueTxt.text = sentence;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
@@ -64,6 +65,6 @@ public class DialogueManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         whoSpeaks.SetActive(false);
-        wasStarted = true;
+        //wasStarted = true;
     }
 }

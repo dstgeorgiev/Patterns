@@ -63,6 +63,8 @@ public class FairyMenu : MonoBehaviour
 
     public void GoToForest()
     {
+        Time.timeScale = 1f;
+        FindObjectOfType<PlayerControl>().SetIndexLevel(SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene("level10_FOREST");
     }
 

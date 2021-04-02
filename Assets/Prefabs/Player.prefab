@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 2016684549463488245}
   - component: {fileID: 2016684549463488234}
   - component: {fileID: 2016684549463488235}
+  - component: {fileID: 6550987734134155732}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -289,6 +290,10 @@ MonoBehaviour:
     m_Bits: 8192
   attackDmg: 30
   attackRate: 2
+  textCoinCounter: {fileID: 0}
+  textPotionsCounter: {fileID: 0}
+  potionHealsBy: 50
+  gameOverMenu: {fileID: 0}
 --- !u!61 &2016684549463488235
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -315,6 +320,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2854242, y: 3.1252694}
   m_EdgeRadius: 0
+--- !u!114 &6550987734134155732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016684549463488239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c1fa637d4dd0794498ce9fdaf6b078d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+  sounds:
+  - {fileID: 8300000, guid: 4fb3c4a4dfd26f24f8405eed0017d9ef, type: 3}
+  - {fileID: 8300000, guid: 52d4009ffd7eded44ba022add58c5925, type: 3}
+  - {fileID: 8300000, guid: de675a2f18c0db44bb9e96c82a28325e, type: 3}
+  - {fileID: 8300000, guid: 8eb76c8f2af83744a880f437c8c9075a, type: 3}
+  - {fileID: 8300000, guid: 4623695fa0ff5804cbd6779013d22481, type: 3}
+  - {fileID: 8300000, guid: a7583ac6cdfa413478f876ecb34e1836, type: 3}
+  - {fileID: 8300000, guid: 0072a484174250845bafeefb51183ba3, type: 3}
 --- !u!1 &2016684550410302244
 GameObject:
   m_ObjectHideFlags: 0

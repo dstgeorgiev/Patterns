@@ -52,4 +52,10 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("StartScene");
 
     }
+
+    public void GoBackLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(FindObjectOfType<PlayerControl>().GetIndexLevel());
+    }
 }

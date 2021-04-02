@@ -36,6 +36,24 @@ EditorBuildSettings:
     path: Assets/Scenes/level8_CASTLE_ENTRANCE.unity
     guid: e07aa9fa0a203f7459ed17de8495802a
   - enabled: 1
+    path: Assets/Scenes/level3_night - Copy.unity
+    guid: ef9373ad10ecf264d8b036a6aa91ca97
+  - enabled: 1
+    path: Assets/Scenes/level4_day - Copy.unity
+    guid: 224a73058ca5f8948b014b1ebdda445a
+  - enabled: 1
+    path: Assets/Scenes/level5_city_Entr - Copy.unity
+    guid: d5f00996191fdc34d91cbdbaa4b9aa41
+  - enabled: 1
+    path: Assets/Scenes/level6_CITY_Day - Copy.unity
+    guid: 3f8aff578f0415a42bf9b61fd95d5ceb
+  - enabled: 1
+    path: Assets/Scenes/level7_City_Night - Copy.unity
+    guid: 39df971dcd360a748ba5ad843353dd3c
+  - enabled: 1
+    path: Assets/Scenes/level8_CASTLE_ENTRANCE - Copy.unity
+    guid: a2a4d88c24e3618408029549d334363b
+  - enabled: 1
     path: Assets/Scenes/level9_CASTLE.unity
     guid: 69ba6d42e994647488b81f0f8bc8d320
   - enabled: 1
