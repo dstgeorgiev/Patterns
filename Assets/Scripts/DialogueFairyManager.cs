@@ -34,6 +34,7 @@ public class DialogueFairyManager : MonoBehaviour
     {
         if(!wasStarted)
         {
+            Debug.Log("Dialogue was started");
             nameTxt.text = dialogue.name;
             sentences.Clear();
             foreach (string sentence in dialogue.sentences)
@@ -74,7 +75,16 @@ public class DialogueFairyManager : MonoBehaviour
         string sentence = sentences.Dequeue();
         if(sentencesPassed==3)
         {
-            string coinsPlayerHas = (FindObjectOfType<PlayerControl>().GetCoins() - 1).ToString();
+            string coinsPlayerHas;
+            if (FindObjectOfType<PlayerControl>().GetCoins()>1)
+            {
+                coinsPlayerHas = (FindObjectOfType<PlayerControl>().GetCoins() - 1).ToString();
+            }
+            else
+            {
+                coinsPlayerHas = "1";
+            }
+            
             sentence = coinsPlayerHas +" "+ sentence;
             dialogueTxt.text = sentence;
             StopAllCoroutines();
@@ -190,8 +200,15 @@ public class DialogueFairyManager : MonoBehaviour
 
     public void ChargePlayerForEnchantmentKill()
     {
-        FindObjectOfType<PlayerControl>().SetCoins(1);
-
+        if (FindObjectOfType<PlayerControl>().GetCoins() > 1)
+        {
+            FindObjectOfType<PlayerControl>().SetCoins(1);
+        }
+        else
+        {
+            FindObjectOfType<PlayerControl>().SetCoins(0);
+        }
+        
     }
 
     public void KillEnemy()

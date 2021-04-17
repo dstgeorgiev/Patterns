@@ -48,7 +48,7 @@ public class PlayerControl : MonoBehaviour
     private int potions;
     private int potionsThisLevel;
     public TextMeshProUGUI textPotionsCounter;
-    public int potionHealsBy = 50;
+    public int potionHealsBy = 85;
 
     //for the fairy contract
     private bool isEnchanted = false;
@@ -298,7 +298,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void RevoceChanegables()
+    public void RevoceChanegables()
     {
         coins = coinsThisLevel;
         potions = potionsThisLevel;

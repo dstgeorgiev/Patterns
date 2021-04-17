@@ -13,6 +13,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player")&&!wasTriggered)
         {
+            
             TriggerDialogue();
             wasTriggered = true;
         }
@@ -24,10 +25,12 @@ public class DialogueTrigger : MonoBehaviour
         Time.timeScale = 0f;
         if(FindObjectOfType<DialogueManager>()!=null)
         {
+
             FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
         }
-        else if (FindObjectOfType<DialogueFairyManager>() != null)
+        if (FindObjectOfType<DialogueFairyManager>() != null)
         {
+            Debug.Log("Triggered");
             FindObjectOfType<DialogueFairyManager>().StartDialogue(dialogue);
         }
         

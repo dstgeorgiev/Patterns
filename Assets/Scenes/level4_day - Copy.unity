@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -571,6 +571,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2016684549190005208, guid: 08b5532921337fa4d9bacf33e833c97b,
+        type: 3}
+      propertyPath: maxHealth
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 2016684549463488232, guid: 08b5532921337fa4d9bacf33e833c97b,
         type: 3}
       propertyPath: m_RootOrder
@@ -638,9 +643,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2016684549463488234, guid: 08b5532921337fa4d9bacf33e833c97b,
         type: 3}
+      propertyPath: attackDmg
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016684549463488234, guid: 08b5532921337fa4d9bacf33e833c97b,
+        type: 3}
       propertyPath: gameOverMenu
       value: 
       objectReference: {fileID: 5533595706623773943}
+    - target: {fileID: 2016684549463488234, guid: 08b5532921337fa4d9bacf33e833c97b,
+        type: 3}
+      propertyPath: potionHealsBy
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 2016684549463488234, guid: 08b5532921337fa4d9bacf33e833c97b,
         type: 3}
       propertyPath: textCoinCounter
@@ -670,6 +685,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016684550410302247, guid: 08b5532921337fa4d9bacf33e833c97b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016684550410302247, guid: 08b5532921337fa4d9bacf33e833c97b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.91
       objectReference: {fileID: 0}
     - target: {fileID: 4188870279121432005, guid: 08b5532921337fa4d9bacf33e833c97b,
         type: 3}

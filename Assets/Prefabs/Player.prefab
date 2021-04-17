@@ -288,11 +288,11 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8192
-  attackDmg: 30
+  attackDmg: 50
   attackRate: 2
   textCoinCounter: {fileID: 0}
   textPotionsCounter: {fileID: 0}
-  potionHealsBy: 50
+  potionHealsBy: 85
   gameOverMenu: {fileID: 0}
 --- !u!61 &2016684549463488235
 BoxCollider2D:
@@ -365,7 +365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016684550410302244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.38, y: 0, z: 0}
+  m_LocalPosition: {x: -4.07, y: 0.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2016684549463488232}

@@ -43,6 +43,7 @@ public class PauseMenu : MonoBehaviour
     public void RestartLevel()
     {
         Time.timeScale = 1f;
+        FindObjectOfType<PlayerControl>().RevoceChanegables();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
